@@ -1,5 +1,4 @@
 #in this Model also we are using the same test data as a IRIS flowers and trying to get the better result
-
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split( x, y, test_size=0.2, train_size=0.8,    random_state=88, shuffle=True, stratify=y)
 from sklearn.tree import DecisionTreeClassifier
