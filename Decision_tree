@@ -1,0 +1,20 @@
+#in this Model also we are using the same test data as a IRIS flowers and trying to get the better result
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split( x, y, test_size=0.2, train_size=0.8,    random_state=88, shuffle=True, stratify=y)
+from sklearn.tree import DecisionTreeClassifier
+#we already talked about n_neighbor it mean how many dots we need , 
+#which method we need to use to calculate kneighbors, p values also mentioned before
+dt=DecisionTreeClassifier();
+knn.fit(X_train, y_train)
+predicted_type=knn.predict(X_test)
+#here we are going to use our accuracy_score method to find how much accurate is pur data
+from sklearn.metrics import accuracy_score
+accuracy_score(y_test, predicted_type)
+cross validate method is used rather than using only first 20% of the values as a test data 
+$we are going to using each 20% of the data to get more accurate data
+from sklearn.model_selection import cross_val_score
+#cv=10 mean here is that we are dividing the data into 10 different part and using the model we are using 
+# and triny to get the accuracy_score of each data set
+Scores_dt=cross_val_score(dt, x,y, cv=10)
+Scores_dt
