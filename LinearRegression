@@ -1,0 +1,32 @@
+#importing packages thatposible we could use
+from sklearn.datasets import load_boston
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+#load boston dataset that shows about prices of the houses related to differect kind of factors
+bds=load_boston()
+#x will be the factors that we will be using
+x=bds.data
+#y will be the target the prices that could be usable
+y=bds.target
+#first thing we are creating our model with the data
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.25, train_size=0.75 , random_state=76)
+#we will be using the minmaxscaler class to be able to conver the data to the between o and 1 values to be able to use linear regression  
+from sklearn.preprocessing import MinMaxScaler
+sc=MinMaxScaler(feature_range=(0,1))
+X_train=sc.fit_transform(X_train)
+X_test=sc.fit_transform(X_test)
+#upper side the X_train and X_test array data is in 1 d format  that is why we needed to reshape y_train to the 1d format to be able to use it and convert it 
+#in linear regression 
+y_train=y_train.reshape(-1, 1)
+y_train=sc.fit_transform(y_train)
+importing lInearRegression model
+from sklearn.linear_model import LinearRegression
+Linear_r=LinearRegression()
+Linear_r.fit(X_train, y_train)
+#getting our predicted array to be able to compare it later
+predicted=Linear_r.predict(X_test)
+#inverse transform the value between (0 and 1) to the normal real data  
+Predicted_values=sc.inverse_transform(predicted)
