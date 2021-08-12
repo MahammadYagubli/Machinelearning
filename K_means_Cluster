@@ -1,0 +1,26 @@
+#Unsupervised learning
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.datasets import load_iris
+iris=load_iris()
+data_iris=iris.data
+from sklearn.cluster import KMeans
+kmns=KMeans(n_clusters=3)
+kmns.fit(data_iris)
+labels=kmns.predict(data_iris)
+cluster_center=kmns.cluster_centers_
+plt.scatter(data_iris[:,2], data_iris[:,3], c=labels )
+plt.xlabel('Petal lenght (cm)')
+plt.ylabel('Petal width(cm) ')
+plt.show()
+k_inertia=[]
+#here we are chechin how will the inertia will change while we are going to change number of clusters
+for i in range (1,10):
+    mns=KMeans(n_clusters=i, random_state=44)
+    kmns.fit(data_iris)
+    k_inertia.append(kmns.inertia_)
+plt.plot( range(1,10), k_inertia, color='green', marker='o' )
+plt.xlabel('number of the key')
+plt.ylabel('inertia')
